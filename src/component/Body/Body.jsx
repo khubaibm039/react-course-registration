@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Cards from '../Cards/Cards'
 import Courses from '../Courses/Courses'
 import Header from '../Header/Header'
+import Swal from 'sweetalert2/src/sweetalert2.js'
 
 function Body() {
     const [courseName, setCourseName] = useState([])
@@ -16,7 +17,13 @@ function Body() {
             const title = [...courseName, card]
             const totalAmountRemaining = remaining - card.credit
             if (totalAmountRemaining < 0) {
-                return alert('total credit full')
+                return (Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Something went wrong!',
+                    footer: '<a href="">Why do I have this issue?</a>',
+                    timer: 2000
+                }))
             }
 
             else {
@@ -27,7 +34,13 @@ function Body() {
             }
         }
         else {
-            return alert('Select one time')
+            return (Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!',
+                footer: '<a href="">Why do I have this issue?</a>',
+                timer: 2000
+            }))
         }
     }
 
